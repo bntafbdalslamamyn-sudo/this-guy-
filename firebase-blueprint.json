@@ -1,0 +1,325 @@
+{
+  "entities": {
+    "Exercise": {
+      "title": "Exercise",
+      "description": "An exercise item in the weekly bodybuilding schedule for a user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "UID of the authenticated owner."
+        },
+        "dayId": {
+          "type": "string",
+          "enum": ["sat", "sun", "mon", "tue", "wed", "thu", "fri"],
+          "description": "Day identifier in the weekly split."
+        },
+        "dayOrder": {
+          "type": "integer",
+          "description": "Order of the exercise within the day."
+        },
+        "nameAr": {
+          "type": "string",
+          "description": "Original Arabic exercise name."
+        },
+        "nameEn": {
+          "type": "string",
+          "description": "Original English exercise name."
+        },
+        "muscleGroupAr": {
+          "type": "string",
+          "description": "Target muscle name in Arabic."
+        },
+        "muscleGroupEn": {
+          "type": "string",
+          "description": "Target muscle name in English."
+        },
+        "muscleKey": {
+          "type": "string",
+          "enum": ["chest", "triceps", "back", "biceps", "shoulders", "legs", "abs"],
+          "description": "Normalized muscle key for filtering and illustrations."
+        },
+        "setsCount": {
+          "type": "integer",
+          "description": "Number of sets prescribed."
+        },
+        "repsRange": {
+          "type": "string",
+          "description": "Prescribed repetition range (e.g., 8 - 12)."
+        },
+        "restSeconds": {
+          "type": "integer",
+          "description": "Recommended rest timer duration in seconds between sets."
+        },
+        "instructionsAr": {
+          "type": "string",
+          "description": "Step-by-step execution instructions in Arabic."
+        },
+        "instructionsEn": {
+          "type": "string",
+          "description": "Step-by-step execution instructions in English."
+        },
+        "notesAr": {
+          "type": "string",
+          "description": "Training and recovery notes."
+        },
+        "lastWeightKg": {
+          "type": "number",
+          "description": "Last recorded working weight in kilograms."
+        },
+        "isCustomModified": {
+          "type": "boolean",
+          "description": "Whether the user customized this exercise from the default schedule."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation (must use FieldValue.serverTimestamp())."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update (must use FieldValue.serverTimestamp())."
+        }
+      },
+      "required": [
+        "userId",
+        "dayId",
+        "dayOrder",
+        "nameAr",
+        "nameEn",
+        "muscleGroupAr",
+        "muscleGroupEn",
+        "muscleKey",
+        "setsCount",
+        "repsRange",
+        "restSeconds",
+        "instructionsAr",
+        "instructionsEn",
+        "notesAr",
+        "lastWeightKg",
+        "isCustomModified",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "WorkoutLog": {
+      "title": "WorkoutLog",
+      "description": "A completed exercise session log recording weight, reps, sets, duration, and notes.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "UID of the authenticated owner."
+        },
+        "dayId": {
+          "type": "string",
+          "description": "Day identifier of the workout."
+        },
+        "dayTitleAr": {
+          "type": "string",
+          "description": "Arabic title of the workout day."
+        },
+        "exerciseId": {
+          "type": "string",
+          "description": "ID of the completed exercise."
+        },
+        "exerciseNameAr": {
+          "type": "string",
+          "description": "Arabic name of the completed exercise."
+        },
+        "muscleKey": {
+          "type": "string",
+          "description": "Target muscle key."
+        },
+        "completedSets": {
+          "type": "integer",
+          "description": "Number of completed sets."
+        },
+        "targetSets": {
+          "type": "integer",
+          "description": "Number of target sets."
+        },
+        "weightKg": {
+          "type": "number",
+          "description": "Weight lifted in kilograms."
+        },
+        "repsCompleted": {
+          "type": "string",
+          "description": "Actual repetitions completed across sets."
+        },
+        "durationMinutes": {
+          "type": "integer",
+          "description": "Workout duration in minutes."
+        },
+        "userNotes": {
+          "type": "string",
+          "description": "Optional notes recorded by the athlete."
+        },
+        "dateKey": {
+          "type": "string",
+          "description": "ISO date key YYYY-MM-DD."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation (must use FieldValue.serverTimestamp())."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update (must use FieldValue.serverTimestamp())."
+        }
+      },
+      "required": [
+        "userId",
+        "dayId",
+        "dayTitleAr",
+        "exerciseId",
+        "exerciseNameAr",
+        "muscleKey",
+        "completedSets",
+        "targetSets",
+        "weightKg",
+        "repsCompleted",
+        "durationMinutes",
+        "userNotes",
+        "dateKey",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "DailyStats": {
+      "title": "DailyStats",
+      "description": "Daily tracking for nutrition macros, meals, water intake, body weight, measurements, and recovery.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "UID of the authenticated owner."
+        },
+        "dateKey": {
+          "type": "string",
+          "description": "Date key YYYY-MM-DD."
+        },
+        "waterCups": {
+          "type": "integer",
+          "description": "Number of water cups consumed today."
+        },
+        "waterTargetCups": {
+          "type": "integer",
+          "description": "Daily target water cups (default 8)."
+        },
+        "bodyWeightKg": {
+          "type": "number",
+          "description": "Current body weight in kilograms."
+        },
+        "stepsCount": {
+          "type": "integer",
+          "description": "Daily step count."
+        },
+        "sleepHours": {
+          "type": "number",
+          "description": "Daily sleep hours for recovery."
+        },
+        "chestCm": {
+          "type": "number",
+          "description": "Chest circumference measurement in cm."
+        },
+        "armCm": {
+          "type": "number",
+          "description": "Arm circumference measurement in cm."
+        },
+        "waistCm": {
+          "type": "number",
+          "description": "Waist circumference measurement in cm."
+        },
+        "thighCm": {
+          "type": "number",
+          "description": "Thigh circumference measurement in cm."
+        },
+        "nutritionGoal": {
+          "type": "string",
+          "enum": ["bulk", "cut", "maintain"],
+          "description": "Selected nutrition goal."
+        },
+        "targetCalories": {
+          "type": "integer",
+          "description": "Estimated daily calorie target."
+        },
+        "consumedCalories": {
+          "type": "integer",
+          "description": "Logged calories consumed today."
+        },
+        "consumedProteinG": {
+          "type": "integer",
+          "description": "Logged protein in grams today."
+        },
+        "consumedCarbsG": {
+          "type": "integer",
+          "description": "Logged carbohydrates in grams today."
+        },
+        "consumedFatG": {
+          "type": "integer",
+          "description": "Logged fat in grams today."
+        },
+        "mealsLogSummary": {
+          "type": "string",
+          "description": "Serialized list of meals logged for the day."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation (must use FieldValue.serverTimestamp())."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update (must use FieldValue.serverTimestamp())."
+        }
+      },
+      "required": [
+        "userId",
+        "dateKey",
+        "waterCups",
+        "waterTargetCups",
+        "bodyWeightKg",
+        "stepsCount",
+        "sleepHours",
+        "chestCm",
+        "armCm",
+        "waistCm",
+        "thighCm",
+        "nutritionGoal",
+        "targetCalories",
+        "consumedCalories",
+        "consumedProteinG",
+        "consumedCarbsG",
+        "consumedFatG",
+        "mealsLogSummary",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/exercises/{exerciseId}": {
+      "schema": {
+        "$ref": "#/entities/Exercise"
+      },
+      "description": "Per-user weekly workout schedule exercises."
+    },
+    "/users/{userId}/workout_logs/{logId}": {
+      "schema": {
+        "$ref": "#/entities/WorkoutLog"
+      },
+      "description": "Per-user completed workout session logs."
+    },
+    "/users/{userId}/daily_stats/{dateKey}": {
+      "schema": {
+        "$ref": "#/entities/DailyStats"
+      },
+      "description": "Per-user daily body metrics, water intake, and nutrition logs."
+    }
+  }
+}

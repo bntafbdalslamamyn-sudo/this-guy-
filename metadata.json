@@ -1,0 +1,6 @@
+{
+  "name": "Body Complete",
+  "description": "تطبيق رياضي متكامل لكمال الأجسام وبناء العضلات وجدول التمارين الأسبوعي والتغذية ومتابعة تطور الجسم",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
